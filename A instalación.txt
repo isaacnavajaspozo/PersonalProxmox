@@ -1,6 +1,25 @@
 ============[Reducción consumo Prxmox]=================================================================================
-# 
+## desactivar todas las partes de la bios que no vayamos a necesitar
+# lo primero es actualizar la bios para tener más opciones de configuración
+
+# estándar que permite al sistema operativo gestionar la energía de los dispositivos de hardware y controlar funciones como la suspensión, el apagado y la administración de energía de los componentes del sistema.
 BIOS > ACPI Settings > Enable ACPI Auto Configuration : Enabled
+
+# desactivar sata (en el caso de que no vaya a utilizarlos)
+SATA Configuration > SATA Controller > Disabled
+
+## Proxmox
+# Scaling governors (lo hago más adelante)
+
+# script para activar el auto ASPM (cuidado porque las tarjetas de red podrián no funcionar bien...)
+# https://github.com/notthebee/AutoASPM
+# https://raw.githubusercontent.com/notthebee/AutoASPM/refs/heads/main/autoaspm.py
+wget https://raw.githubusercontent.com/notthebee/AutoASPM/refs/heads/main/autoaspm.py
+phyton3 autospm.py
+
+## otra configuración: activación y desactivación automática
+Configurar el RTC en la BIOS para encender el propio pc, programandolo para encenderlo y apagarlo automáticamente
+
 
 ============[instalación]==============================================================================================
 ## recursos del mini-pc para Proxmox VE
@@ -35,11 +54,13 @@ https://community-scripts.github.io/ProxmoxVE/scripts?id=microcode
 [*] intel-microcode_3.20240514.1_amd64.deb
 - y
 
+# ⚠️ de este último script no se si fiarme ya que es de alguien independiente y no oficial de proxmox, lo quiero dejar documentado por si agún día es útil para mí
 # instalo script proxmenux para tareas de administrador de servidor (drivers, máquinas virtuales...)
-https://github.com/MacRimi/ProxMenux
+# https://github.com/MacRimi/ProxMenux
 # en la pagina princial, donde muestra el readme solo tengo que copiar y pegar el instalador : bash -c "$(wget -qLO - https://raw.githubusercontent.com/MacRimi/ProxMenux/main/install_proxmenux.sh)"
-- normal
-- y
+# - normal
+# - y
+#
 # para abrirlo "menu"
 # ahora desde proxmox puedo isntalar paquetes de proxmox sin tener que salir de proxmox, ahora en este ejemplo voy a instalar adguards sin salir de proxmox
 # > menu
@@ -48,7 +69,7 @@ https://github.com/MacRimi/ProxMenux
 #   > yes
 #   > Desafult Settings
 
-
+# reinicio el servidor proxmox
 - reiniciar
 
 
