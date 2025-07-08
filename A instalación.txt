@@ -1,3 +1,7 @@
+============[Reducción consumo Prxmox]=================================================================================
+# 
+BIOS > ACPI Settings > Enable ACPI Auto Configuration : Enabled
+
 ============[instalación]==============================================================================================
 ## recursos del mini-pc para Proxmox VE
 + CPU: 
