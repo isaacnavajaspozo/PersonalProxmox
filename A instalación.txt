@@ -1,0 +1,6 @@
+## acceso proxmox instalación
+htts://<ip>:8006
+
+# proxmox por defecto está configurado para que pagues actualizaciones y mejoras, es por eso que tengo que definir que no quieor suscripción
+Datacenter > (Node) > Updates > Repositories > Disable
+Datacenter > (Node) > Updates > Repositories > Add > No-Subscription > Add
