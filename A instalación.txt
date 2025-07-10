@@ -22,7 +22,7 @@ Configurar el RTC en la BIOS para encender el propio pc, programandolo para ence
 
 
 ============[instalación]==============================================================================================
-## recursos del mini-pc para Proxmox VE
+## recursos del mini-pc para Proxmox VE · Mini PC NiPoGi AK1 Plus 16GB:
 + CPU: 	  Intel Celeron J4125 (4 núcleos / 4 hilos, 2.0 GHz base, 2.7 GHz turbo)
 + RAM: 	  16 GB DDR4
 + Disco: 	SSD M.2 NVMe 256 GB (puede variar según modelo)
@@ -73,7 +73,7 @@ https://community-scripts.github.io/ProxmoxVE/scripts?id=microcode
 - reiniciar
 
 
-# total de máquinas según recursos
+# aproximación total de máquinas según recursos
 
 Sin overcommit (CPU estricta)
 +------------+------------+-------------+--------------------------------+--------------------------------------+   +---------------------+
@@ -89,6 +89,7 @@ Con overcommit moderado (x2 vCPUs)
 | Tipo VM    | RAM por VM | vCPU por VM | Máx. vCPUs (cores físicos × 2) | Máx. VMs por RAM (16 GB - 2 GB host) |   | Máx. número de VMs  |
 +------------+------------+-------------+--------------------------------+--------------------------------------+   +---------------------+
 | VM ligera  | 512 MB     | 1           | 8                              | 28                                   |   | 8                   |
+| VM estándar| 1 GB       | 1           | 8                              | 14                                   |   | 8                   |
 | VM estándar| 2 GB       | 1           | 8                              | 7                                    |   | 7                   |
 | VM pesada  | 4 GB       | 2           | 4                              | 3                                    |   | 3                   |
 +------------+------------+-------------+--------------------------------+--------------------------------------+   +---------------------+
