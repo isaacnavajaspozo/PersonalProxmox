@@ -1,0 +1,90 @@
+============[instalación]==============================================================================================
+## recursos del mini-pc para Proxmox VE · Mini PC NiPoGi AK1 Plus 16GB:
++ CPU: 	  Intel Celeron J4125 (4 núcleos / 4 hilos, 2.0 GHz base, 2.7 GHz turbo)
++ RAM: 	  16 GB DDR4
++ Disco: 	SSD M.2 NVMe 256 GB (puede variar según modelo)
++ Red: 	  Ethernet Gigabit 1 Gbps + Wi-Fi 5 (802.11ac)
+
+## acceso proxmox instalación
+Proxmox Virtual Environment : https://www.proxmox.com/en/downloads [Proxmox VE 8.4 ISO Installer]
+- Disco en ext4 (el espacio es para la instalación de proxmox)
+- zona horaria
+- <password-root>
+- ip
+- DNS: 8.8.8.8
+htts://<ip>:8006
+
+## SSH
+# entro por ssh y modifico la terminal
+vim ~/.bashrc
+--------------------------------------------------------------
+## alias del servidor
+alias ls='ls -ha --color=auto --group-directories-first'
+alias la='ls  -lhai --group-directories-first'
+alias _liberarespacioram='sudo sync; echo 1 | sudo tee /proc/sys/vm/drop_caches | echo "pe    tición realizada correctamente." && echo "" && free -h'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias grep='grep --color=auto'
+alias df='df --exclude-type=tmpfs'
+
+## Cambiar diseño del prompt (estilo cyberpunk)
+# **************************************
+PS1='\[\e[1;38;5;33m\]\u\[\e[0m\]@\[\e[38;5;240m\]\h \[\e[1;31m\]\w\[\e[0m\] \[\e[38;5;61m\]$\[\e[0m\] '
+
+## cambiar colores para ls (estilo cyberpunk)
+# **************************************
+# Estilo: sobrio, técnico y oscuro
+export LS_COLORS="di=1;38;5;240:fi=0;38;5;248:ln=1;38;5;33:so=1;38;5;94:pi=1;38;5;61:bd=1;38;5;236:cd=1;38;5;238:or=1;38;5;124:mi=1;38;5;124:ex=1;31"
+
+#     — directorios en gris oscuro técnico (bold gray 240).
+#     — archivos normales en gris medio (normal gray 248).
+#     — enlaces simbólicos en azul marino fuerte (bold blue 33).
+#     — sockets en púrpura oscuro (bold purple 94).
+#     — tuberías (pipes) en azul cobalto apagado (bold blue 61).
+#     — dispositivos de bloque en gris carbón (bold gray 236).
+#     — dispositivos de carácter en gris plomo (bold gray 238).
+#     — archivos rotos en rojo sangre oscuro (bold red 124).
+#     — archivos inexistentes en rojo sangre oscuro (bold red 124).
+#     — ejecutables en rojo brillante (bold red 1;31).
+--------------------------------------------------------------
+
+# modifico el archivo vim
+cd /
+vim .vimrc
+--------------------------------------------------------------
+" ~/.vimrc simplificado estilo cyberpunk acorde a LS_COLORS
+set number                  " Muestra números de línea
+set cursorline              " Resalta línea actual
+set scrolloff=5             " Mantiene 5 líneas arriba/abajo
+set incsearch               " Búsqueda incremental
+set hlsearch                " Resalta resultados búsqueda
+set ignorecase              " Ignora mayúsculas/minúsculas
+set smartcase               " Caso sensible si hay mayúsculas
+set expandtab               " Usa espacios en lugar de tabs
+set tabstop=4
+set shiftwidth=4
+set wildmenu                " Mejor autocompletado en cmd
+syntax on
+set background=dark
+
+" Colores personalizados básicos para consola
+highlight Normal ctermfg=248 ctermbg=236   " Texto gris medio / fondo gris carbón
+highlight Comment ctermfg=33                " Comentarios azul marino fuerte
+highlight LineNr ctermfg=240                " Números gris oscuro
+highlight CursorLine ctermbg=238            " Fondo línea cursor gris plomo
+highlight Keyword ctermfg=61                 " Palabras clave azul cobalto apagado
+highlight Function ctermfg=94                " Funciones púrpura oscuro
+highlight Statement ctermfg=124              " Sentencias rojo sangre oscuro
+highlight Visual ctermbg=240                 " Selección gris oscuro
+
+set laststatus=2          " Siempre mostrar línea de estado
+set noerrorbells          " Sin sonidos de error
+set clipboard=unnamedplus " Usa portapapeles del sistema
+--------------------------------------------------------------
+
+# deshabilito el wifi 
+ip link set wlp3s0 down
+
+
+
