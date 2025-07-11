@@ -110,6 +110,7 @@ rfkill list
 
 
 ============[discos]===============================================================================================
-
+# creo la partición mayor en modo LVM-Thin
+Nodo > Disk > LVM-Thin
 
 
