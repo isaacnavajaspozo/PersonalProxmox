@@ -2,18 +2,19 @@
 ## recursos del mini-pc para Proxmox VE · Mini PC NiPoGi AK1 Plus 16GB:
 + CPU: 	  Intel Celeron J4125 (4 núcleos / 4 hilos, 2.0 GHz base, 2.7 GHz turbo)
 + RAM: 	  16 GB DDR4
-+ Disco: 	SSD M.2 NVMe 256 GB (puede variar según modelo)
++ Disco: 	SSD M.2 NVMe 500 GB
 + Red: 	  Ethernet Gigabit 1 Gbps + Wi-Fi 5 (802.11ac)
 
 ## acceso proxmox instalación
 Proxmox Virtual Environment : https://www.proxmox.com/en/downloads [Proxmox VE 8.4 ISO Installer]
-- Disco en ext4 (el espacio es para la instalación de proxmox)
+- Disco en ext4
 - zona horaria
 - <password-root>
 - ip
 - DNS: 8.8.8.8
 htts://<ip>:8006
 
+============[configuración]============================================================================================
 ## SSH
 # entro por ssh y modifico la terminal
 vim ~/.bashrc
@@ -30,23 +31,22 @@ alias df='df --exclude-type=tmpfs'
 
 ## Cambiar diseño del prompt (estilo cyberpunk)
 # **************************************
-PS1='\[\e[1;38;5;33m\]\u\[\e[0m\]@\[\e[38;5;240m\]\h \[\e[1;31m\]\w\[\e[0m\] \[\e[38;5;61m\]$\[\e[0m\] '
+PS1='\[\e[1;31m\]\u箱[\H] \w $: \[\e[0m\]'
 
 ## cambiar colores para ls (estilo cyberpunk)
 # **************************************
-# Estilo: sobrio, técnico y oscuro
-export LS_COLORS="di=1;38;5;240:fi=0;38;5;248:ln=1;38;5;33:so=1;38;5;94:pi=1;38;5;61:bd=1;38;5;236:cd=1;38;5;238:or=1;38;5;124:mi=1;38;5;124:ex=1;31"
-
-#     — directorios en gris oscuro técnico (bold gray 240).
-#     — archivos normales en gris medio (normal gray 248).
-#     — enlaces simbólicos en azul marino fuerte (bold blue 33).
-#     — sockets en púrpura oscuro (bold purple 94).
-#     — tuberías (pipes) en azul cobalto apagado (bold blue 61).
-#     — dispositivos de bloque en gris carbón (bold gray 236).
-#     — dispositivos de carácter en gris plomo (bold gray 238).
-#     — archivos rotos en rojo sangre oscuro (bold red 124).
-#     — archivos inexistentes en rojo sangre oscuro (bold red 124).
-#     — ejecutables en rojo brillante (bold red 1;31).
+# Estilo técnico oscuro
+LS_COLORS=""
+LS_COLORS+="di=1;38;5;240:"     # directorios en gris oscuro técnico
+LS_COLORS+="fi=0;38;5;248:"     # archivos normales en gris medio
+LS_COLORS+="ln=1;33:"           # enlaces simbólicos en amarillo
+LS_COLORS+="so=1;38;5;94:"      # sockets en púrpura oscuro
+LS_COLORS+="pi=1;33:"           # pipes (tuberías) en amarillo
+LS_COLORS+="bd=1;38;5;236:"     # dispositivos de bloque en gris carbón
+LS_COLORS+="cd=1;38;5;238:"     # dispositivos de carácter en gris plomo
+LS_COLORS+="or=1;38;5;124:"     # archivos rotos en rojo sangre oscuro
+LS_COLORS+="mi=1;38;5;124:"     # archivos inexistentes en rojo sangre oscuro
+LS_COLORS+="ex=1;31"            # ejecutables en rojo brillante
 --------------------------------------------------------------
 
 # modifico el archivo vim
@@ -108,6 +108,8 @@ rfkill list
 # para volver a activar el radio : rfkill block 1
 # bloqueo el radio wifi desde la bios y compruebo con rfkill list el "Hard blocked: yes" 
 
+
+============[discos]===============================================================================================
 
 
 
