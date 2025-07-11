@@ -83,8 +83,31 @@ set noerrorbells          " Sin sonidos de error
 set clipboard=unnamedplus " Usa portapapeles del sistema
 --------------------------------------------------------------
 
-# deshabilito el wifi 
+# deshabilito el wifi y Bluetooth del mini pc para que a nivel de hardware no emita señal
 ip link set wlp3s0 down
+apt update
+apt install rfkill
+rfkill list
+  #    0: hci0: Bluetooth
+  #            Soft blocked: no
+  #            Hard blocked: no
+  #    1: phy0: Wireless LAN
+  #            Soft blocked: no
+  #            Hard blocked: no
+# bloqueo radio wifi
+rfkill block 1
+# bloqueo radio Bluetooth
+rfkill block 0
+rfkill list
+  #    0: hci0: Bluetooth
+  #            Soft blocked: yes
+  #            Hard blocked: no
+  #    1: phy0: Wireless LAN
+  #            Soft blocked: yes
+  #            Hard blocked: no
+# para volver a activar el radio : rfkill block 1
+# bloqueo el radio wifi desde la bios y compruebo con rfkill list el "Hard blocked: yes" 
+
 
 
 
