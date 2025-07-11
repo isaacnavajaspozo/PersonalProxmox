@@ -110,7 +110,71 @@ rfkill list
 
 
 ============[discos]===============================================================================================
+# primero creo el Thinpool y lo añado como almacenamiento
+
+
 # creo la partición mayor en modo LVM-Thin
-Nodo > Disk > LVM-Thin
+Nodo > Disk > LVM-Thin > Create Thinpool 
+  > [ ] add storage    # si lo seleccionas se agregará automáticamente al almacenamiento
+
+# crea un almacenamiento (para asociar el tipo de almacenamiento y agregarlo al nodo)
+Datacenter > Storage > Add > LVM-Thin > Selecciona "nombre-disco"
+# desde aquí configuro el tipo de unidad que voy a crear pudiendo ser por ejemplo en Directory (Disk Image, ISO Image, Container, Backup...)
+# según las opciones que seleccion al clicar en el nodo > storage me dará unas opciones u otras
+
++--------------+-----------------------------+----------------------------------------+
+| Tipo         | Uso adecuado                | Contenido a seleccionar (“Content”)    |
++--------------+-----------------------------+----------------------------------------+
+| LVM-Thin     | Discos para VM/CT           | Disk image, Container                  |
+| LVM          | Solo discos de VM           | Disk image                             |
+| Directory    | Ficheros: ISOs, backups...  | ISO image, Backup, Container, Disk img |
+| ZFS          | Similar a LVM-Thin + snaps  | Disk image, Container, ISO*            |
+| NFS / CIFS   | Almacenamiento en red       | ISO, Backup, Container, Disk image     |
+| Ceph         | Cluster distribuido         | Disk image, Container                  |
++--------------+-----------------------------+----------------------------------------+
+* ZFS solo permite ISO si se monta como dataset compatible
+
+
+
+## en el caso de necesitar más discos físicos 
+----------------------------------------------------------
+# primero creo el Thinpool asignando el disco
+Nodo > Disk > LVM-Thin > Create Thinpool 
+
+# crea un almacenamiento (para asociar el tipo de almacenamiento y agregarlo al nodo)
+Datacenter > Storage > Add > LVM-Thin > Selecciona "nombre-disco"
+
+# compruebo los discos
+lsblk
+
+# libera el punto de montaje
+umount /mnt/"nombre-storage"
+
+# formateo el disco | gestiono particiones MBR | creo la partición
+fdisk /dev/sda  
+  - d  # Eliminar particiones existentes (puedes repetir si hay varias).
+  - n  # Crear nueva partición (por defecto, usa todo el disco).
+  - t  # (opcional) Cambiar tipo a 8e si vas a usar LVM.
+  - w  # Guardar los cambios
+
+# comando del paquete LVM (Logical Volume Manager) que muestra información detallada sobre los volúmenes físicos (Physical Volumes, PV)
+pvdisplay 
+
+# comando para consultar el estado SMART de un disco
+# S.M.A.R.T = sistema integrado en discos duros y SSDs que permite auto-monitorear su salud y detectar fallos potenciales antes de que ocurran
+smartctl -iHA /dev/sda 
+----------------------------------------------------------
+
+
+# yo en mi caso en local (pve) que es mi unidad de almacenamiento de proxmox no quiero que contenga más de 20GB y por defecto le dá 100GB 
+# compruebo el almacenamiento (90GB)
+lvdisplay /dev/pve/root
+df -h /
+lsblk
+lvdisplay
+vgs
+df -hT
+
+
 
 
