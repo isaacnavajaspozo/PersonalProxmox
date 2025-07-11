@@ -22,12 +22,6 @@ Configurar el RTC en la BIOS para encender el propio pc, programandolo para ence
 
 
 ============[instalación scripts]=====================================================================================
-## recursos del mini-pc para Proxmox VE · Mini PC NiPoGi AK1 Plus 16GB:
-+ CPU: 	  Intel Celeron J4125 (4 núcleos / 4 hilos, 2.0 GHz base, 2.7 GHz turbo)
-+ RAM: 	  16 GB DDR4
-+ Disco: 	SSD M.2 NVMe 256 GB (puede variar según modelo)
-+ Red: 	  Ethernet Gigabit 1 Gbps + Wi-Fi 5 (802.11ac)
-
 # cambio el tema
 usuario (arriba a la derecha) > Color Theme > Proxmox Dark
 
@@ -41,10 +35,11 @@ https://community-scripts.github.io/ProxmoxVE/scripts?id=scaling-governor
 [*] powersave
 - y
 
+# (si funciona bien no lo toques 😂)
 # instalo script para ver si el procesador tiene alguna actualización
-https://community-scripts.github.io/ProxmoxVE/scripts?id=microcode
-[*] intel-microcode_3.20240514.1_amd64.deb
-- y
+# https://community-scripts.github.io/ProxmoxVE/scripts?id=microcode
+# [*] intel-microcode_3.20240514.1_amd64.deb
+# - y
 
 # ⚠️ de este último script no se si fiarme ya que es de alguien independiente y no oficial de proxmox, lo quiero dejar documentado por si agún día es útil para mí
 # instalo script proxmenux para tareas de administrador de servidor (drivers, máquinas virtuales...)
