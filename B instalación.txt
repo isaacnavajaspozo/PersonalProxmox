@@ -21,20 +21,12 @@ phyton3 autospm.py
 Configurar el RTC en la BIOS para encender el propio pc, programandolo para encenderlo y apagarlo automáticamente
 
 
-============[instalación]==============================================================================================
+============[instalación scripts]=====================================================================================
 ## recursos del mini-pc para Proxmox VE · Mini PC NiPoGi AK1 Plus 16GB:
 + CPU: 	  Intel Celeron J4125 (4 núcleos / 4 hilos, 2.0 GHz base, 2.7 GHz turbo)
 + RAM: 	  16 GB DDR4
 + Disco: 	SSD M.2 NVMe 256 GB (puede variar según modelo)
 + Red: 	  Ethernet Gigabit 1 Gbps + Wi-Fi 5 (802.11ac)
-
-## acceso proxmox instalación
-Proxmox Virtual Environment : https://www.proxmox.com/en/downloads [Proxmox VE 8.4 ISO Installer]
-- Disco en ext4 (el espacio es para la instalación de proxmox)
-- zona horaria
-- <password-root>
-- ip
-htts://<ip>:8006
 
 # cambio el tema
 usuario (arriba a la derecha) > Color Theme > Proxmox Dark
